@@ -1,9 +1,12 @@
 import React from 'react';
+import { Header } from './Header';
+import { TaskList } from './tasks/List';
 
 export const App: React.FC = () => {
   return (
     <div className="App">
-      <header>React Basic CRUD</header>
+      <Header />
+      <TaskList />
     </div>
   );
 };
