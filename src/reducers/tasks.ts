@@ -13,6 +13,10 @@ export const tasks = (
   switch (action.type) {
     case ActionType.FETCH_TASKS:
       return { ...state, all: initialTasks };
+    case ActionType.CREATE_TASK:
+      if (action.payload) {
+        return { ...state, all: [...state.all, action.payload] };
+      }
   }
 
   return state;
