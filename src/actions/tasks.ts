@@ -28,6 +28,13 @@ export const updateTask = (task: Task): ActionCreator => {
   };
 };
 
+export const removeTask = (task: Task): ActionCreator => {
+  return {
+    type: ActionType.REMOVE_TASK,
+    payload: task,
+  };
+};
+
 export const setActiveTask = (task?: Task): ActionCreator => {
   return {
     type: ActionType.SET_ACTIVE_TASK,

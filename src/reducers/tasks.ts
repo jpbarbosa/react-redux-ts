@@ -25,6 +25,11 @@ export const tasks = (
           task.id === state.active?.id ? action.payload : task
         ),
       };
+    case ActionType.REMOVE_TASK:
+      return {
+        ...state,
+        all: state.all.filter((task) => task.id !== action.payload.id),
+      };
     case ActionType.SET_ACTIVE_TASK:
       return {
         ...state,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setActiveTask, updateTask } from '../../actions/tasks';
+import { removeTask, setActiveTask, updateTask } from '../../actions/tasks';
 import { StoreState } from '../../types/store';
 import { Task, TasksState } from '../../types/tasks';
 import { TaskForm } from './Form';
@@ -22,6 +22,10 @@ export const TaskItem: React.FC<IProps> = ({ task }) => {
     dispatch(setActiveTask(undefined));
   };
 
+  const handleRemove = (task: Task) => {
+    dispatch(removeTask(task));
+  };
+
   return (
     <>
       {tasks.active && tasks.active.id === task.id ? (
@@ -29,7 +33,9 @@ export const TaskItem: React.FC<IProps> = ({ task }) => {
       ) : (
         <div className="item">
           <span onClick={() => handleActiveTask(task)}>{task.name}</span>
-          <button className="bt-remove">X</button>
+          <button className="bt-remove" onClick={() => handleRemove(task)}>
+            X
+          </button>
         </div>
       )}
     </>
