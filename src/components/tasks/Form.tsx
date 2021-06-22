@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Task } from '../../types/tasks';
+import { useForm } from '../../hooks/useForm';
 
 export const TaskForm: React.FC = () => {
-  const [formState, setFormState] = useState<Task>({ name: '' });
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFormState({ ...formState, [event.target.name]: event.target.value });
-  };
+  const { formState, handleChange, handleSubmit } = useForm<Task>({ name: '' });
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         name="name"
