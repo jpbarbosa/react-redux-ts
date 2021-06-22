@@ -18,5 +18,10 @@ export enum ActionType {
 
 export interface TaskAction {
   type: ActionType;
+  payload: Task;
+}
+
+export interface TaskActionCreator {
+  type: ActionType;
   payload?: Task;
 }

@@ -17,6 +17,19 @@ export const tasks = (
       if (action.payload) {
         return { ...state, all: [...state.all, action.payload] };
       }
+      return state;
+    case ActionType.UPDATE_TASK:
+      return {
+        ...state,
+        all: state.all.map((task) =>
+          task.id === state.active?.id ? action.payload : task
+        ),
+      };
+    case ActionType.SET_ACTIVE_TASK:
+      return {
+        ...state,
+        active: action.payload,
+      };
   }
 
   return state;
