@@ -1,18 +1,9 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 import { TaskItem } from './Item';
-import { StoreState } from '../../types/store';
-import { TasksState } from '../../types/tasks';
-import { fetchTasks } from '../../actions/tasks';
+import { useTasks } from '../../hooks/useTasks';
 
 export const TaskList: React.FC = () => {
-  const tasks = useSelector<StoreState, TasksState>((state) => state.tasks);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
+  const { tasks } = useTasks(true);
 
   return (
     <div className="list">

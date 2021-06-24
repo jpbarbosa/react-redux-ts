@@ -1,22 +1,9 @@
 import React from 'react';
 import { TaskForm } from './Form';
-import { useSelector, useDispatch } from 'react-redux';
-import { createTask, setActiveTask } from '../../actions/tasks';
-import { Task, TasksState } from '../../types/tasks';
-import { StoreState } from '../../types/store';
+import { useTasks } from '../../hooks/useTasks';
 
 export const TaskNew: React.FC = () => {
-  const tasks = useSelector<StoreState, TasksState>((state) => state.tasks);
-
-  const dispatch = useDispatch();
-
-  const handleAction = (task: Task) => {
-    dispatch(createTask(task));
-  };
-
-  const handleActiveTask = (task: Task) => {
-    dispatch(setActiveTask(task));
-  };
+  const { tasks, handleAction, handleActiveTask } = useTasks();
 
   return (
     <div className="new">

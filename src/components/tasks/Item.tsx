@@ -1,8 +1,6 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeTask, setActiveTask, updateTask } from '../../actions/tasks';
-import { StoreState } from '../../types/store';
-import { Task, TasksState } from '../../types/tasks';
+import { useTasks } from '../../hooks/useTasks';
+import { Task } from '../../types/tasks';
 import { TaskForm } from './Form';
 
 interface IProps {
@@ -10,21 +8,7 @@ interface IProps {
 }
 
 export const TaskItem: React.FC<IProps> = ({ task }) => {
-  const tasks = useSelector<StoreState, TasksState>((state) => state.tasks);
-  const dispatch = useDispatch();
-
-  const handleActiveTask = (task: Task) => {
-    dispatch(setActiveTask(task));
-  };
-
-  const handleAction = (task: Task) => {
-    dispatch(updateTask(task));
-    dispatch(setActiveTask(undefined));
-  };
-
-  const handleRemove = (task: Task) => {
-    dispatch(removeTask(task));
-  };
+  const { tasks, handleAction, handleRemove, handleActiveTask } = useTasks();
 
   return (
     <>
