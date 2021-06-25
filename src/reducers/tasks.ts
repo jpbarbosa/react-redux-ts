@@ -14,10 +14,7 @@ export const tasks = (
     case ActionType.FETCH_TASKS:
       return { ...state, all: initialTasks };
     case ActionType.CREATE_TASK:
-      if (action.payload) {
-        return { ...state, all: [...state.all, action.payload] };
-      }
-      return state;
+      return { ...state, all: [...state.all, action.payload] };
     case ActionType.UPDATE_TASK:
       return {
         ...state,
@@ -35,7 +32,7 @@ export const tasks = (
         ...state,
         active: action.payload,
       };
+    default:
+      return state;
   }
-
-  return state;
 };
